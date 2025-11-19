@@ -9,16 +9,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minLength: 3,
-        maxLength: 20,
+        minlength: 3,
+        maxlength: 20,
     },
 
     lastName : {
         type: String,
         required: true,
         trim: true,
-        minLength: 3,
-        maxLength: 20,
+        minlength: 3,
+        maxlength: 20,
     },
 
     age: {
@@ -43,9 +43,9 @@ const userSchema = new mongoose.Schema({
 
     bio: {
         type: String,
-        default : "This is a default bio",
+        required:true,
         trim : true,
-        maxLength: 200,
+        maxlength: 200,
     },
 
     skills : {
@@ -86,10 +86,10 @@ const userSchema = new mongoose.Schema({
         message : 'Password must include upper, lower, number (min length 6).',
     },
 
-    profileURL: {
+    photoURL: {
         type: String,
         validate(value) {
-            if(!value.isURL){
+            if(value && !validator.isURL(value)){
                 throw new Error("Invalid URL");
             }
         }

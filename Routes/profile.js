@@ -1,7 +1,7 @@
 const userAuth = require("../middlewares/userAuth");
 const express = require("express");
 const app = express();
-const User = require("../models/User");
+const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
 const profileRouter = express.Router();

@@ -1,6 +1,6 @@
 const express = require("express");
 const authRouter = express.Router();
-const User = require("../models/User");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userAuth = require("../middlewares/userAuth");
@@ -10,7 +10,7 @@ const userAuth = require("../middlewares/userAuth");
 
 authRouter.post("/signup", async (req, res) => {
   try {
-    const { emailId, password, firstName, lastName, age, gender } = req.body;
+    const { emailId, password, firstName, lastName, age, gender ,photoURL ,bio} = req.body;
 
     const hashPassword = await bcrypt.hash(password, 10);
     // console.log(hashPassword);
@@ -23,6 +23,8 @@ authRouter.post("/signup", async (req, res) => {
       lastName,
       age,
       gender,
+      photoURL,
+      bio,
     });
 
     // saving user to database
@@ -98,13 +100,8 @@ authRouter.post("/login", async (req, res) => {
     });
 
     req.user = user._id;
-
-    res.json({
-      message: "User logged in successfully",
-      data: {
-        userId: user._id,
-      },
-    });
+    console.log(user);
+    res.send(user);
 
     // If we want to send multiple things in response , we can send json object
     // In json object their is only one message key and one data key
