@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("./user");
 
-const ALLOWED_STATUS = ["interested" , "ignore" ,"accepted" ,"rejected"];
+const ALLOWED_STATUS = ["interested" , "ignored" ,"accepted" ,"rejected"];
 
 const connectionRequestSchema = new mongoose.Schema({
     fromUserId : {

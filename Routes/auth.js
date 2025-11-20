@@ -53,9 +53,18 @@ authRouter.post("/signup", async (req, res) => {
     // console.log("Cookie set with token",req.cookies);
     // console.log("Hello");
 
-    res.send("user signed up successfully");
+    res.json(
+      {
+        message:"user signedUp successfully",
+        data:savedUser,
+      }
+    );
   } catch (err) {
-    res.status(400).send({ error: err.message });
+    res.status(400).json(
+      {
+        "err":err.message,
+      }
+    );
   }
 });
 
@@ -106,7 +115,7 @@ authRouter.post("/login", async (req, res) => {
     // If we want to send multiple things in response , we can send json object
     // In json object their is only one message key and one data key
   } catch (err) {
-    res.status(400).send({ error: err.message });
+    res.status(400).send({ err: err.message });
   }
 });
 
