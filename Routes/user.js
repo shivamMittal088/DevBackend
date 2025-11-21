@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const userAuth = require("../middlewares/userAuth");
 const connectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
+const mongoose = require("mongoose");
 
 
 const fields = "firstName lastName photoURL age gender bio skills";
@@ -133,6 +134,103 @@ userRouter.get("/feed", userAuth , async (req,res)=>{
         res.send("error messge" + err)
     }
 
+})
+
+
+userRouter.get("/user/mutualConnections/:otherId", userAuth , async(req,res)=>{
+
+  try{
+    const loggedInUser = req.user;
+    const id = req.user._id;
+    // console.log("loggedInUserID is :",id);
+    const otherId = req.params.otherId;
+    // console.log("other id is :",otherId);
+
+      if (!otherId) return res.status(400).json({ error: "otherId required" });
+
+    //  we will find all conections of admin and otherId
+    const docsA = await connectionRequest.find(
+      {
+      status : "accepted",
+        $or:[
+          { fromUserId : id },
+          { toUserId : id },
+        ]
+      } )
+
+    const docsB = await connectionRequest.find(
+      {
+        status : "accepted",
+        $or:[
+          { fromUserId : otherId },
+          { toUserId : otherId }
+        ]
+      } )
+
+    // now need to find intersection of both friends list .
+    // Intersection of friendsA and friendsB .
+
+    // extract friend ID's for user A
+    const friendsA = docsA.map((entity) => {
+  if (entity.fromUserId.toString() === id.toString()) {
+    return entity.toUserId.toString();  
+  } else {
+    return entity.fromUserId.toString();
+  }
+});
+
+
+// extract friend ID's for user B
+    const friendsB = docsB.map((entity) => {
+  if (entity.fromUserId.toString() === otherId.toString()) {
+    return entity.toUserId.toString();  
+  } else {
+    return entity.fromUserId.toString();
+  }
+});
+
+// now need to take intersection of friendsA and friendsB
+// we will iterate through smaller so that TC decreases .
+let small = friendsA;
+let large = new Set(friendsB);
+
+if(friendsA.length > friendsB.length){
+  small = friendsB;
+  large = new Set(friendsA);
+}
+
+
+const mutualIDsSet = new Set();
+
+// we have identified smaller and larger array .
+ small.filter((entity)=>{
+  if(large.has(entity)){
+    mutualIDsSet.add(entity);
+  }
+})
+
+const mutualIDs = Array.from(mutualIDsSet); // array of user id strings
+
+const mutualIDUsers = await User.find(
+  {
+    _id: { $in: mutualIDs.map(id => new mongoose.Types.ObjectId(id)) },
+  }
+)
+
+res.json(
+  {
+    message : "Mutual requests fetched successfully",
+    length : mutualIDs.length,
+    data : mutualIDUsers
+  }
+)
+
+
+  }
+  catch(err){
+     console.error("mutualConnections error:", err);        // <-- log real error
+    return res.status(500).json({ error: err.message || "Server error" }); // better feedback
+  }
 })
 
 module.exports = userRouter;
