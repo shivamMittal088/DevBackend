@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema({
 
     lastName : {
         type: String,
-        required: true,
         trim: true,
         minlength: 3,
         maxlength: 20,
@@ -23,14 +22,12 @@ const userSchema = new mongoose.Schema({
 
     age: {
         type: Number,
-        required: true,
         min: 18,
         max: 100,
     },
 
     gender: {
         type : String ,
-        required: true,
         enum : {
             values : ALLOWED_GENDERS,
             message : "{VALUE} is not supported",
@@ -43,7 +40,6 @@ const userSchema = new mongoose.Schema({
 
     bio: {
         type: String,
-        required:true,
         trim : true,
         maxlength: 200,
     },
@@ -94,6 +90,15 @@ const userSchema = new mongoose.Schema({
         //     }
         // }
     },
+
+    lastLoginAt : {
+        type : Date,
+    },
+
+    countStreak : {
+        type : Number,
+        default : 0,
+    }
 
 }, 
 { timestamps: true });

@@ -5,26 +5,35 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userAuth = require("../middlewares/userAuth");
 
+function convertUTCtoIST(utcTimestamp) {
+  const date = new Date(utcTimestamp);
+  const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
+  const istDate = new Date(date.getTime() + istOffset);
 
+  return istDate.toISOString().replace("Z", "+05:30");
+}
 
 
 authRouter.post("/signup", async (req, res) => {
   try {
-    const { emailId, password, firstName, lastName, age, gender ,photoURL ,bio} = req.body;
+    const { emailId, password, firstName} = req.body;
 
     const hashPassword = await bcrypt.hash(password, 10);
     // console.log(hashPassword);
 
+
+const date = new Date();
+
+
+
+
     // creating new instance of User model
     const newUser = new User({
+      firstName,
       emailId,
       password: hashPassword,
-      firstName,
-      lastName,
-      age,
-      gender,
-      photoURL,
-      bio,
+      lastLoginAt : convertUTCtoIST(date),
+      
     });
 
     // saving user to database
@@ -52,6 +61,7 @@ authRouter.post("/signup", async (req, res) => {
     // console.log("Token created:", token);
     // console.log("Cookie set with token",req.cookies);
     // console.log("Hello");
+
 
     res.json(
       {
@@ -107,6 +117,17 @@ authRouter.post("/login", async (req, res) => {
     res.cookie("token", token, {
       expires: new Date(Date.now() + 8 * 3600000),
     });
+
+
+    
+
+const date = new Date();
+
+    user.lastLoginAt = convertUTCtoIST(date);
+    await user.save();
+
+
+
 
     req.user = user._id;
     console.log(user);
