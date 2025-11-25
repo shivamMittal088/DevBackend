@@ -3,6 +3,7 @@ const { connectDB } = require("../config/database");
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
+const { startStreakBadge } = require('../Components/StreakBadge')
 
 const port = 5555;
 
@@ -12,7 +13,6 @@ const authRouter = require("../Routes/auth");
 const profileRouter = require("../Routes/profile");
 const connectionRequest = require("../Routes/connectionRequest");
 const userRouter = require("../Routes/user");
-
 
 // global middlewares .
 app.use(express.json()) // <-- parses application/json
@@ -31,9 +31,13 @@ app.use("/", profileRouter);
 app.use("/",connectionRequest);
 app.use("/",userRouter);
 
+
+
+
 connectDB()
   .then(() => {
     console.log("Database connected successfully");
+    startStreakBadge();
     app.listen(5555, () => {
       console.log(`Server is running on port ${port}`);
     });

@@ -5,14 +5,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userAuth = require("../middlewares/userAuth");
 
-function convertUTCtoIST(utcTimestamp) {
-  const date = new Date(utcTimestamp);
-  const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
-  const istDate = new Date(date.getTime() + istOffset);
-
-  return istDate.toISOString().replace("Z", "+05:30");
-}
-
 
 authRouter.post("/signup", async (req, res) => {
   try {
@@ -32,8 +24,7 @@ const date = new Date();
       firstName,
       emailId,
       password: hashPassword,
-      lastLoginAt : convertUTCtoIST(date),
-      
+      lastLoginAt : null,
     });
 
     // saving user to database
@@ -118,16 +109,8 @@ authRouter.post("/login", async (req, res) => {
       expires: new Date(Date.now() + 8 * 3600000),
     });
 
-
-    
-
-const date = new Date();
-
-    user.lastLoginAt = convertUTCtoIST(date);
+    user.lastLoginAt = new Date();
     await user.save();
-
-
-
 
     req.user = user._id;
     console.log(user);

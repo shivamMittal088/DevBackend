@@ -43,24 +43,30 @@ userRouter.get("/user/requests/received", userAuth, async (req, res) => {
 // get all the connections .
 userRouter.get("/user/connections", userAuth, async (req, res) => {
   try{
+
     const loggedInUser = req.user;
     const id = req.user._id;
 
-    const connections = await connectionRequest.find(
-        {
-            $or : [
-                {
-                    fromUserId : id,
-                    status : "accepted",
-                },
 
-                {
-                    toUserId : id,
-                    status : "accepted",
-                }
-            ]
-        }
-    )
+    const page = parseInt( req.query.page ) || 1;
+    let limit = parseInt( req.query.limit ) || 5;
+    limit = limit > 5 ? 5 : limit;
+    const skip = (page - 1) * limit ;
+
+
+    // same filter used for both countDocuments() and find()
+    const filter = {
+      $or: [
+        { fromUserId: id, status: "accepted" },
+        { toUserId: id, status: "accepted" },
+      ],
+    };
+
+
+    const connections = await connectionRequest
+    .find(filter)
+    .skip(skip)
+    .limit(limit)
     .populate("fromUserId" ,fields)
     .populate("toUserId",fields)
 
@@ -71,11 +77,23 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
       return row.fromUserId;
     });
 
+    const total = await connectionRequest.countDocuments(filter);
+
+    const totalPages = total / limit ;
+    const hasNextPage = page < totalPages;
+    const hasPrevPage = page > 1;
+
 
     res.status(200).json(
         {
             message : "user connections fetched successfully",
+            page,
+            limit,
             data : data,
+            totalPages,
+            hasNextPage,
+            hasPrevPage,
+            count : data.length,
         }
     )
   }
@@ -96,7 +114,7 @@ userRouter.get("/feed", userAuth , async (req,res)=>{
     const loggedInUser = req.user;
     const id = req.user._id;
 
-     const page = parseInt(req.query.page) || 1;
+    const page = parseInt(req.query.page) || 1;
     let limit = parseInt(req.query.limit) || 10;
     limit = limit > 50 ? 50 : limit;
     const skip = (page - 1) * limit;
