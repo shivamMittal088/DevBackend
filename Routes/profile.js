@@ -5,8 +5,11 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
 const profileRouter = express.Router();
+const { lastActive } = require("../middlewares/lastActive")
 
-profileRouter.get("/profile/view", userAuth, async (req, res) => {
+profileRouter.get("/profile/view", userAuth, 
+    lastActive ,
+    async (req, res) => {
   try {
     const userId = req.user;
     const user = await User.findById(userId).select("-password -__v");
@@ -20,7 +23,10 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
 
 
 
-profileRouter.patch("/profile/edit" , userAuth , async (req,res)=>{
+profileRouter.patch("/profile/edit" , 
+    userAuth , 
+    lastActive ,
+    async (req,res)=>{
     try{
         const {firstName , lastName ,gender ,age ,bio ,skills ,profileURL } = req.body;
         // we does not want that anybody will change email id 
@@ -52,7 +58,9 @@ profileRouter.patch("/profile/edit" , userAuth , async (req,res)=>{
 
 
 // Forgot password API .
-profileRouter.patch("/profile/password", userAuth , async (req,res)=>{
+profileRouter.patch("/profile/password", userAuth,
+    lastActive, 
+    async (req,res)=>{
     try{
         const { currentPassword , newPassword ,confirmPassword } = req.body;
 

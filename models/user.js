@@ -98,6 +98,11 @@ const userSchema = new mongoose.Schema({
     countStreak : {
         type : Number,
         default : 0,
+    },
+
+    lastActiveAt : {
+        type : Date,
+        default : null,
     }
 
 }, 

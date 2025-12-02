@@ -4,6 +4,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userAuth = require("../middlewares/userAuth");
+const {lastActive } = require("../middlewares/lastActive")
 
 
 authRouter.post("/signup", async (req, res) => {
@@ -127,7 +128,10 @@ authRouter.post("/login", async (req, res) => {
 
 
 
-authRouter.post("/logout", userAuth ,(req,res)=>{
+authRouter.post("/logout", 
+  userAuth ,
+  lastActive,
+  (req,res)=>{
   const user = req.user;
   // console.log(user);
 

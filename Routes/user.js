@@ -4,12 +4,14 @@ const userAuth = require("../middlewares/userAuth");
 const connectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
 const mongoose = require("mongoose");
+const { lastActive } = require("../middlewares/lastActive")
+
+const fields = "firstName lastName photoURL age gender bio skills lastOnlineAt countStreak , lastActiveAt";
 
 
-const fields = "firstName lastName photoURL age gender bio skills";
-
-
-userRouter.get("/user/requests/received", userAuth, async (req, res) => {
+userRouter.get("/user/requests/received", userAuth, 
+  lastActive,
+  async (req, res) => {
   try {
     const loggedInUser = req.user;
     // console.log(loggedInUser);
@@ -41,7 +43,9 @@ userRouter.get("/user/requests/received", userAuth, async (req, res) => {
 
 
 // get all the connections .
-userRouter.get("/user/connections", userAuth, async (req, res) => {
+userRouter.get("/user/connections", userAuth, 
+  lastActive,
+  async (req, res) => {
   try{
 
     const loggedInUser = req.user;
@@ -49,7 +53,7 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
 
 
     const page = parseInt( req.query.page ) || 1;
-    let limit = parseInt( req.query.limit ) || 5;
+    let limit  = parseInt( req.query.limit ) || 5;
     limit = limit > 5 ? 5 : limit;
     const skip = (page - 1) * limit ;
 
@@ -106,7 +110,9 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
 
 
 
-userRouter.get("/feed", userAuth , async (req,res)=>{
+userRouter.get("/feed", userAuth , 
+  lastActive,
+  async (req,res)=>{
     try{
         // 1. user does not see his own card .
     // 2. does not see cards of accepted , rejectd , ignored , interested .
@@ -155,7 +161,9 @@ userRouter.get("/feed", userAuth , async (req,res)=>{
 })
 
 
-userRouter.get("/user/mutualConnections/:otherId", userAuth , async(req,res)=>{
+userRouter.get("/user/mutualConnections/:otherId", userAuth , 
+  lastActive ,
+  async(req,res)=>{
 
   try{
     const loggedInUser = req.user;

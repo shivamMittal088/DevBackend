@@ -7,7 +7,6 @@ const { startStreakBadge } = require('../Components/StreakBadge')
 
 const port = 5555;
 
-
 // Importing Routes .
 const authRouter = require("../Routes/auth");
 const profileRouter = require("../Routes/profile");
@@ -22,8 +21,6 @@ app.use(cors({
   origin: 'http://localhost:3000', // frontend url
   credentials: true, // to allow cookies to be sent
 }))
-
-
 
 
 app.use("/", authRouter);

@@ -4,10 +4,12 @@ const connectionRequestRouter = express.Router();
 const connectionRequest = require("../models/connectionRequest");
 const userAuth = require("../middlewares/userAuth");
 const User = require("../models/user");
+const { lastActive }= require("../middlewares/lastActive");
 
 connectionRequestRouter.post(
   "/request/send/:status/:userId",
   userAuth,
+  lastActive,
   async (req, res) => {
     try {
       // 1️⃣ Extract data
@@ -73,7 +75,10 @@ connectionRequestRouter.post(
 
 
 
-connectionRequestRouter.patch("/request/review/:status/:requestId" , userAuth , async (req,res)=>{
+connectionRequestRouter.patch("/request/review/:status/:requestId" , 
+  userAuth ,
+  lastActive,
+  async (req,res)=>{
   try{
     const loggedInUser = req.user;
     const { status , requestId } = req.params;
