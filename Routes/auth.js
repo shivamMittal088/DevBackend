@@ -41,7 +41,7 @@ const date = new Date();
     // 3. options → additional settings for the token, such as expiration time
     const token = jwt.sign(
       {_id: savedUser._id,},
-      "MySecretKey",
+      process.env.JWT_SECRET,
       {expiresIn: "1h",}
     );
 
@@ -102,7 +102,7 @@ authRouter.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       {_id: user._id, },
-      "MySecretKey",
+      process.env.JWT_SECRET,
       {expiresIn: "1h",}
     );
 

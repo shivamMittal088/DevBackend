@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
+require("dotenv").config(); 
 
-const password = "pNwJsC1jP8KU2T6V"
-
-const URI = `mongodb+srv://DEVTINDER:${password}@shivam.wk0c4nk.mongodb.net/DevTinderBackend`;
+const URI = `mongodb+srv://DEVTINDER:${process.env.MONGODB_PASSWORD}@shivam.wk0c4nk.mongodb.net/DevTinderBackend`;
 
 const connectDB = async()=>{
     try{

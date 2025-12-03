@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 const { startStreakBadge } = require('../Components/StreakBadge')
 
-const port = 5555;
+const port = process.env.PORT;
 
 // Importing Routes .
 const authRouter = require("../Routes/auth");
@@ -35,7 +35,7 @@ connectDB()
   .then(() => {
     console.log("Database connected successfully");
     startStreakBadge();
-    app.listen(5555, () => {
+    app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${port}`);
     });
   })
