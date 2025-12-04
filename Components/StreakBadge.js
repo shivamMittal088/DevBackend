@@ -21,7 +21,6 @@ function startStreakBadge(){
     const users = await user.find({});
 
     for(const u of users){
-        console.log("Shivam : ",u);
         console.log("🔥 Cron running! ", new Date().toLocaleString());
         console.log("user id : ",u._id);
         if (!u.lastLoginAt) {
