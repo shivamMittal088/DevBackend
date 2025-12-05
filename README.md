@@ -17,6 +17,7 @@
 | GET    | /webChat/:targetUserId                        | Get chat messages with a specific user           | Yes          |
 
 
+
 ## FOLDER Structure
 
 ```
@@ -59,25 +60,56 @@ DevBackend/
 ```
 
 
-##  🗄️Database Schema
 
-    ## Users Collection
 
-      - _id (ObjectId, primary key)
-      - firstName (string, required)
-      - lastName (string)
-      - emailId (string, unique, required)
-      - password (string, hashed, required)
-      - skills (array of strings)
-      - age (number)
-      - gender (string: "Male" | "Female" | "Other")
-      - bio (string, optional)
-      - photoURL (string: base64 / image URL)
-      - countStreak (number, default: 0)
-      - lastLoginAt (timestamp)
-      - lastActiveAt (timestamp)
-      - createdAt (timestamp, auto-created)
-      - updatedAt (timestamp, auto-updated)
-      - __v (internal version key)
+
+# 🗄️Database Schema
+
+### User Schema
+- _id (ObjectId, primary key)
+- firstName (string, required)
+- lastName (string)
+- emailId (string, unique, required)
+- password (string, hashed, required)
+- skills (array of strings)
+- age (number)
+- gender (string: "Male" | "Female" | "Other")
+- bio (string, optional)
+- photoURL (string: base64 / image URL)
+- countStreak (number, default: 0)
+- lastLoginAt (timestamp)
+- lastActiveAt (timestamp)
+- createdAt (timestamp, auto-created)
+- updatedAt (timestamp, auto-updated)
+- __v (internal version key)
+
+
+### Connection Requests Schema
+- _id (ObjectId, primary key)
+- fromUserId (ObjectId → users._id, sender of the request)
+- toUserId (ObjectId → users._id, receiver of the request)
+- status (string: "interested" | "accepted" | "ignored")
+- createdAt (timestamp, auto-created)
+- updatedAt (timestamp, auto-updated)
+- __v (internal version key)
+
+
+### Chats Collection Schema
+- _id (ObjectId, primary key)
+- participants (array of ObjectId → users._id)
+- exactly 2 participants in a one-to-one chat
+- messages (array of message objects)
+- Each message contains:
+  - senderId (ObjectId → users._id)
+  - text (string)
+  - _id (ObjectId)
+  - createdAt (timestamp)
+  - updatedAt (timestamp)
+  - createdAt (timestamp, auto-created)
+  - updatedAt (timestamp, auto-updated)
+  - __v (internal version key)
+
+
+
 
 
