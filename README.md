@@ -84,6 +84,7 @@ DevBackend/
 - __v (internal version key)
 
 
+-------------------
 ### Connection Requests Schema
 - _id (ObjectId, primary key)
 - fromUserId (ObjectId → users._id, sender of the request)
@@ -93,6 +94,7 @@ DevBackend/
 - updatedAt (timestamp, auto-updated)
 - __v (internal version key)
 
+---------------------------------------------
 
 ### Chats Collection Schema
 - _id (ObjectId, primary key)
