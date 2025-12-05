@@ -57,3 +57,43 @@ DevBackend/
 └── README.md
 
 ```
+
+
+##  🗄️Database Schema
+     ---
+
+     Users Collection
+     ---
+
+    _id (ObjectId, primary key)
+
+    firstName (string, required)
+
+    lastName (string)
+
+    emailId (string, unique, required)
+
+    password (string, hashed, required)
+
+    skills (array of strings)
+
+    age (number)
+
+    gender (string: "Male" | "Female" | "Other")
+
+    bio (string, optional)
+
+    photoURL (string: base64 / image URL)
+
+    countStreak (number, default: 0)
+
+    lastLoginAt (timestamp)
+
+    lastActiveAt (timestamp)
+
+    createdAt (timestamp, auto-created)
+
+    updatedAt (timestamp, auto-updated)
+
+    __v (internal version key)
+
