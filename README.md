@@ -15,3 +15,42 @@
 | POST   | /request/send/:status/:userId                 | Send connection request                          | Yes          |
 | PATCH  | /request/review/:status/:requestId            | Review (accept/reject) a connection request      | Yes          |
 | GET    | /webChat/:targetUserId                        | Get chat messages with a specific user           | Yes          |
+
+
+## FOLDER Structure
+
+DevBackend/
+├── Components/                 # Reusable backend components (streaks, badges, helpers)
+│   └── StreakBadge.js          # Right now , not working .
+│
+├── config/                     # DB connections, environment configs
+│   └── config.js
+│
+├── middlewares/                # Authentication, activity tracking
+│   ├── lastActive.js
+│   └── userAuth.js
+│
+├── models/                     # Mongoose models (DB schemas)
+│   ├── chat.js
+│   ├── connectionRequest.js
+│   └── user.js
+│
+├── Routes/                     # API route handlers
+│   ├── auth.js
+│   ├── chat.js
+│   ├── connectionRequest.js
+│   ├── profile.js
+│   └── user.js
+│
+├── src/                        # Main server logic
+│   ├── app.js                  # Express app entry
+│   └── socket.js               # Socket.IO setup
+│
+├── utils/                      # Utility functions (tokens, validations) 
+│   └── *.js                    # Right now , blank file .
+│
+├── .env                        # Environment variables (not committed)
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── README.md
