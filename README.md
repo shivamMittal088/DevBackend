@@ -19,6 +19,7 @@
 
 ## FOLDER Structure
 
+```
 DevBackend/
 ├── Components/                 # Reusable backend components (streaks, badges, helpers)
 │   └── StreakBadge.js          # Right now , not working .
@@ -54,3 +55,5 @@ DevBackend/
 ├── package.json
 ├── package-lock.json
 └── README.md
+
+```
