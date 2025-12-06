@@ -1,6 +1,15 @@
 # DevTinder
 - A developer matchmaking and networking backend built with Node.js and Express, featuring user authentication, connection requests, and real-time chat capabilities.
 
+## 🔗 Frontend Repository
+The frontend for this project is available here:  
+👉 [DevTinder Frontend](https://github.com/shivamMittal088/devFrontend)
+
+## 🚀 Live Deployment
+Access the live deployed version:  
+👉 [http://13.234.204.27/](http://13.234.204.27/)
+
+
 ## Overview
 - DevTinder is a RESTful API backend designed to help developers discover, connect, and communicate with each other.
 - The backend provides secure user authentication using JWT tokens, a connection request workflow, real-time chat support, and a structured feed system for discovering new developers.
@@ -351,8 +360,6 @@ npm install
 <p align="center">
   <img src="./assets/Webchat.png" width="500" height="400">
 </p>
-
-
 
 
 ----
