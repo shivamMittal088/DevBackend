@@ -9,6 +9,7 @@
 
 
 ## 🧰 Tech Stack
+
 ### Backend
 
 - **Node.js** – JavaScript runtime for backend services
@@ -137,7 +138,6 @@ DevBackend/
 
 -----------------------------
 ### Connection Requests Schema
-------------------------------
 - _id (ObjectId, primary key)
 - fromUserId (ObjectId → users._id, sender of the request)
 - toUserId (ObjectId → users._id, receiver of the request)
@@ -148,7 +148,6 @@ DevBackend/
 
 ---------------------------------------------
 ### Chats Collection Schema
----------------------------------------------
 - _id (ObjectId, primary key)
 - participants (array of ObjectId → users._id)
 - exactly 2 participants in a one-to-one chat
@@ -321,25 +320,37 @@ npm install
 
 
 ------
-###  📸 Demo
+## 📸 Demo
 
-##### 🔐 Login
-<img src="./assets/login.png" width="500"/>
+#### 🔐 Login
+<p align="center">
+  <img src="./assets/login.png" width="500" height="400">
+</p>
 
-##### 🧑‍💻 Update Profile
-<img src="./assets/UpdateProfile.png" width="500"/>
+#### 🧑‍💻 Update Profile
+<p align="center">
+  <img src="./assets/UpdateProfile.png" width="500">
+</p>
 
-##### 🏠 Feed
-<img src="./assets/feed.png" width="500"/>
+#### 🏠 Feed
+<p align="center">
+  <img src="./assets/feed.png" width="500" height="400">
+</p>
 
-##### 📥 Requests
-<img src="./assets/requests.png" width="500"/>
+#### 📥 Requests
+<p align="center">
+  <img src="./assets/requests.png" width="500" height="400">
+</p>
 
-##### 🤝 Connections
-<img src="./assets/connections.png" width="500"/>
+#### 🤝 Connections
+<p align="center">
+  <img src="./assets/connections.png" width="500">
+</p>
 
-##### 💬 WebChat
-<img src="./assets/Webchat.png" width="500"/>
+### 💬 WebChat
+<p align="center">
+  <img src="./assets/Webchat.png" width="500" height="400">
+</p>
 
 
 
