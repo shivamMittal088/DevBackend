@@ -51,8 +51,7 @@
 - Timestamps & versioning included in schema
 
 
-
-
+-------
 ## API Endpoints
 
 | Method | Endpoint                                      | Description                                      | Auth Required |
@@ -168,6 +167,27 @@ DevBackend/
   - __v (internal version key)
 
 
+---
+## ⚙️ Setup Instructions
+------
+
+### 1. Clone the Repository
+- git clone https://github.com/shivamMittal088/DevBackend
+- cd DevBackend
+
+### 2. Install Dependencies
+npm install
+
+### 3. Create .env File
+- PORT=5555
+- MONGODB_PASSWORD=your_mongodb_password
+- JWT_SECRET=your_jwt_secret
+
+### 4. Start Development Server
+- npm run dev
+
+#### Backend will run on:
+- http://localhost:5555
 
 
 
