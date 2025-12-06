@@ -2,7 +2,6 @@
 - A developer matchmaking and networking backend built with Node.js and Express, featuring user authentication, connection requests, and real-time chat capabilities.
 
 ## Overview
----
 - DevTinder is a RESTful API backend designed to help developers discover, connect, and communicate with each other.
 - The backend provides secure user authentication using JWT tokens, a connection request workflow, real-time chat support, and a structured feed system for discovering new developers.
 - It is fully integrated with MongoDB for data storage and can be extended to later by extensible features such as daily streak tracking, activity logs, and profile personalization
@@ -189,7 +188,7 @@ npm install
 
 ## ✅ TODOs (Learning + Development Roadmap)
 
-#### 🔹 Project Initialization
+#### 🔹 **Project Initialization**
 
 - Create a repository
 - Initialize the repository
@@ -204,14 +203,14 @@ npm install
 - Learn difference between ^ and ~
 
 ---
-#### 🔹 Git & GitHub
+#### 🔹 **Git & GitHub**
 - Initialize Git
 - Create .gitignore
 - Create remote repo on GitHub
 - Push code to origin
 
 ---
-#### 🔹 Routing (Express)
+#### 🔹 **Routing (Express)**
 - Play with routes: /hello, /, /xyz, /hello/2
 - Understand route order importance
 - Install Postman & test APIs
@@ -222,7 +221,7 @@ npm install
 - Read dynamic route params
 
 ----
-#### 🔹 Middlewares
+#### 🔹 **Middlewares**
 - Practice multiple route handlers & next()
 - Learn app.use() vs app.all()
 - Create dummy admin auth middleware
@@ -230,7 +229,7 @@ npm install
 - Centralized error handling middleware
 
 -----
-#### 🔹 MongoDB + Mongoose
+#### 🔹 **MongoDB + Mongoose**
 - Create a free MongoDB Atlas cluster
 - Install Mongoose
 - Connect application using connection string
@@ -241,7 +240,7 @@ npm install
 - Handle errors with try/catch
 
 -----
-#### 🔹 JSON, Body Parsing, and Input Handling
+#### 🔹 **JSON, Body Parsing, and Input Handling**
 - Learn JS object vs JSON
 - Add express.json()
 - Make signup API dynamic
@@ -256,7 +255,7 @@ npm install
 - Learn findOneAndUpdate option
 
 --------
-#### 🔹 Schema Validation + Sanitization
+#### 🔹 **Schema Validation + Sanitization**
 - Explore SchemaType option
 - Add required, unique, lowercase, min, maxlength, trim, default
 - Add custom validator for gender
@@ -267,7 +266,7 @@ npm install
 - NEVER TRUST req.body
 
 -------
-#### 🔹 Authentication
+#### 🔹 **Authentication**
 - Validate data in signup
 - Install bcrypt
 - Hash password with bcrypt.hash
@@ -282,21 +281,21 @@ npm install
 - Create userAuth middleware
 - Protect profile + connection request route
 - JWT & cookie expiry = 7 day
-- Add schema methods (getJWT(), comparePassword()
+- Add schema methods (getJWT(), comparePassword())
 
 ------
-#### 🔹 DevTinder Feature
+#### 🔹 **DevTinder Feature**
 - Explore Tinder API
-- List all APIs for DevTinde
-- Group routes with express.Router(
-- Create authRouter, profileRouter, requestRoute
+- List all APIs for DevTinder
+- Group routes with express.Router()
+- Create authRouter, profileRouter, requestRouter
 - POST /logou
 - PATCH /profile/edi
 - PATCH /profile/passwor
 - Validate all POST, PATCH API
 
 ------
-#### 🔹 Connection Request
+#### 🔹 **Connection Request**
 - Create ConnectionRequest schemA
 - Build send-request API
 - Proper data validation
@@ -307,17 +306,28 @@ npm install
 - Understand compound indexes
 
 ----
-#### 🔹 Review Requests + Connection
+#### 🔹 **Review Requests + Connection**
 - Implement POST /request/review/:status/:requestId
 - GET /user/requests/receives
 - GET /user/connections
 - Learn ref & populate
 
 ----
-#### 🔹 Feed Algorithm
+#### 🔹 **Feed Algorithm**
 - Build logic for GET /feed
 - Use $nin, $ne, $and
 - Implement pagination
+
+
+
+------
+###  Demo
+![Login](./assets/login.png)
+![Update Profile](./assets/UpdateProfile.png)
+![Feed](./assets/feed.png)
+![Requests](./assets/requests.png)
+![Connections](./assets/connections.png)
+![WebChat](./assets/Webchat.png)
 
 
 
