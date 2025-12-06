@@ -321,13 +321,26 @@ npm install
 
 
 ------
-###  Demo
-![Login](./assets/login.png)
-![Update Profile](./assets/UpdateProfile.png)
-![Feed](./assets/feed.png)
-![Requests](./assets/requests.png)
-![Connections](./assets/connections.png)
-![WebChat](./assets/Webchat.png)
+###  📸 Demo
+
+##### 🔐 Login
+<img src="./assets/login.png" width="500"/>
+
+##### 🧑‍💻 Update Profile
+<img src="./assets/UpdateProfile.png" width="500"/>
+
+##### 🏠 Feed
+<img src="./assets/feed.png" width="500"/>
+
+##### 📥 Requests
+<img src="./assets/requests.png" width="500"/>
+
+##### 🤝 Connections
+<img src="./assets/connections.png" width="500"/>
+
+##### 💬 WebChat
+<img src="./assets/Webchat.png" width="500"/>
+
 
 
 
