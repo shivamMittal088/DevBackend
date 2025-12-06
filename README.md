@@ -1,3 +1,58 @@
+# 🧰 Tech Stack
+### Backend
+
+- Node.js – JavaScript runtime for backend services
+- Express.js – Lightweight framework for building REST APIs
+- MongoDB – NoSQL database for storing users, chats, and connections
+- Mongoose – Schema modeling for MongoDB
+- JWT (JSON Web Tokens) – Secure authentication
+- bcrypt – Password hashing
+
+---------
+### ☁️ Cloud & Deployment (AWS)
+
+- AWS EC2 – Hosts the backend server
+- PM2 – Process manager to keep Node.js running 24×7
+  - Auto-restart on crash
+  - Auto-start after reboot
+  - Zero-downtime reloads
+- NGINX – Reverse proxy for:
+  - Routing traffic to Node.js backend
+  - SSL termination (HTTPS)
+  - Handling load efficiently
+  - Serving static assets (optional)
+
+------
+### ⚡ Real-Time Communication
+- Socket.IO (optional / planned)
+- Live messaging
+
+--------
+### 🛠️ Development Tools
+
+- Nodemon – Hot-reloading during development
+- Postman - Client – API testing
+- MongoDB Compass – GUI for exploring data
+- VS Code – Primary development environment
+
+------
+### 🧬 Environment 
+
+- dotenv – Environment variable management
+- npm – Package manager
+- MongoDB Atlas – (Optional) Cloud DB alternative
+
+-----
+### 🏗️ Software Architecture
+
+- Modular folder structure (Routes, Models, Middlewares, Utils)
+- RESTful API design
+- Middleware-based authentication & authorization
+- Timestamps & versioning included in schema
+
+
+
+
 ## API Endpoints
 
 | Method | Endpoint                                      | Description                                      | Auth Required |
@@ -84,8 +139,9 @@ DevBackend/
 - __v (internal version key)
 
 
--------------------
+-----------------------------
 ### Connection Requests Schema
+------------------------------
 - _id (ObjectId, primary key)
 - fromUserId (ObjectId → users._id, sender of the request)
 - toUserId (ObjectId → users._id, receiver of the request)
@@ -95,8 +151,8 @@ DevBackend/
 - __v (internal version key)
 
 ---------------------------------------------
-
 ### Chats Collection Schema
+---------------------------------------------
 - _id (ObjectId, primary key)
 - participants (array of ObjectId → users._id)
 - exactly 2 participants in a one-to-one chat
@@ -110,6 +166,10 @@ DevBackend/
   - createdAt (timestamp, auto-created)
   - updatedAt (timestamp, auto-updated)
   - __v (internal version key)
+
+
+
+
 
 
 
