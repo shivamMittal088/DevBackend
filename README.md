@@ -1,3 +1,16 @@
+## DevTinder
+- A developer matchmaking and networking backend built with Node.js and Express, featuring user authentication, connection requests, and real-time chat capabilities.
+
+--------
+## Overview
+---
+- DevTinder is a RESTful API backend designed to help developers discover, connect, and communicate with each other.
+- The backend provides secure user authentication using JWT tokens, a connection request workflow, real-time chat support, and a structured feed system for discovering new developers.
+- It is fully integrated with MongoDB for data storage and can be extended to later by extensible features such as daily streak tracking, activity logs, and profile personalization
+-----
+
+
+
 # 🧰 Tech Stack
 ### Backend
 
